@@ -53,16 +53,18 @@ def doScoreDB(scdb):
 # del 명령 수정
         elif parse[0] == 'del':
             try:
+                isRemoved = False
                 for p in scdb[:]:     # name 같은 모든 사람 레코드 제거
                     if p['Name'] == parse[1]:
                         scdb.remove(p)
-                    else:     # 에러처리 : 잘못된 이름을 입력했을 때
-                        print('삭제할 이름을 정확히 입력해주세요.')            
+                        isRemoved = True
+
+                if not isRemoved:     # 에러처리 : 잘못된 이름을 입력했을 때
+                    print('삭제할 이름을 정확히 입력해주세요.')
 
 
             except IndexError:   # 에러처리 : 이름을 입력하지 않았을 때
                 print('삭제할 이름을 입력해주세요.')
-
 
 
 # show
