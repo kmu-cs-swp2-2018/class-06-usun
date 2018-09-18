@@ -13,7 +13,7 @@ def fibo(n):
 
 #반복적 구현
 def iterfibo(n):
-    num0 = 0
+    space = 0
     num1 = 1
     num2 = 1
 
@@ -24,8 +24,8 @@ def iterfibo(n):
     else:
         for i in range(2, n+1):
             num2 = num1
-            num1 = num0 + num1
-            num0 = num2
+            num1 += space
+            space = num2
     return num1
 
 
