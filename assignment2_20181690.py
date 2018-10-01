@@ -14,7 +14,7 @@ def recbinsearch(searchList, lower, upper, target):
 
     middlenum = (lower+upper)//2
     if target == searchList[middlenum]:
-        return (middlenum)
+        return middlenum
     elif target < searchList[middlenum]:
         return recbinsearch(searchList, lower, middlenum-1, target)
     else :

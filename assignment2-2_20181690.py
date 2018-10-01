@@ -14,19 +14,18 @@ def fibo(n):
 #반복적 구현
 def iterfibo(n):
     space = 0
-    num1 = 1
-    num2 = 1
+    now = 1
+    past = 1
 
-    if n == 0 :
-        return 0
-    elif n == 1 :
-        return 1
+    if n < 2 :
+        return n
+
     else:
         for i in range(2, n+1):
-            num2 = num1
-            num1 += space
-            space = num2
-    return num1
+            past = now
+            now += space
+            space = past
+    return now
 
 
 while True:
