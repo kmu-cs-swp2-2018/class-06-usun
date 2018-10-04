@@ -155,12 +155,20 @@ class ScoreDB(QWidget):
 
                 if not isRemoved:  # 에러처리 : 잘못된 이름을 입력했을 때
                     message_box = QMessageBox()
-                    message_box.setIcon(QMessageBox.Warning)
+                    message_box.setIcon(QMessageBox. Warning)
                     message_box.setWindowTitle("Warning!")
                     message_box.setText("이름을 정확히 입력해주세요.")
                     message_box.setInformativeText("입력한 이름을 확인하세요.")
 
             self.showScoreDB()
+
+
+        except IndexError:
+            message_box = QMessageBox()
+            message_box.setIcon(QMessageBox.Warning)
+            message_box.setWindowTitle("Warning!")
+            message_box.setText("삭제할 이름을 입력해주세요.")
+            message_box.setInformativeText("입력한 데이터를 확인하세요.")
 
     def findClicked(self):
 
