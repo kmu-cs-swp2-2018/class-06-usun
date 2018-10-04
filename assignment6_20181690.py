@@ -132,6 +132,18 @@ class ScoreDB(QWidget):
         fH.close()
 
     def addClicked(self):
+        try:
+            record = {'Name': self.nameEdit.text(), 'Age': int(self.ageEdit.text()), 'Score': int(self.scoreEdit.text())}
+            self.scoredb.append(record)
+            self.showScoreDB()
+            print(self.scoredb)
+        except :
+            message_box = QMessageBox()
+            message_box.setIcon(QMessageBox.Warning)
+            message_box.setWindowTitle("Warning!")
+            message_box.setText("데이터를 정확히 입력해주세요.")
+            message_box.setInformativeText("입력한 데이터를 확인하세요.")
+            message_box.exec()
 
     def deleteClicked(self):
 
@@ -147,6 +159,8 @@ class ScoreDB(QWidget):
                 self.textEdit.insertPlainText(attr + "=" + str(p[attr]) + "\t")
                 if(attr == 'Score'):
                     self.textEdit.insertPlainText('\n')
+
+
 
 
 
