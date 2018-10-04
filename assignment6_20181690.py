@@ -192,7 +192,33 @@ class ScoreDB(QWidget):
             message_box.setInformativeText("입력한 데이터를 확인하세요.")
 
     def incClicked(self):
-    
+        try:
+            for p in self.scoredb:
+                if p['Name'] == self.nameEdit.text():
+                    p['Score'] = str(int(p['Score']) + int(self.amountEdit.text()))
+
+                else:  # 에러처리 : 잘못된 이름을 입력했을 때
+                    message_box = QMessageBox()
+                    message_box.setIcon(QMessageBox.Warning)
+                    message_box.setWindowTitle("Warning!")
+                    message_box.setText("데이터를 정확히 입력해주세요.")
+                    message_box.setInformativeText("입력한 데이터를 확인하세요.")
+                break
+            self.showScoreDB()
+
+        except ValueError:
+            message_box = QMessageBox()
+            message_box.setIcon(QMessageBox.Warning)
+            message_box.setWindowTitle("Warning!")
+            message_box.setText("점수를 정확히 입력해주세요.")
+            message_box.setInformativeText("입력한 데이터를 확인하세요.")
+        except IndexError:
+            message_box = QMessageBox()
+            message_box.setIcon(QMessageBox.Warning)
+            message_box.setWindowTitle("Warning!")
+            message_box.setText("데이터를 입력해주세요.")
+            message_box.setInformativeText("입력한 데이터를 확인하세요.")
+
     def showScoreDB(self):
         self.textEdit.setText("")
         #print(self.scoredb)
