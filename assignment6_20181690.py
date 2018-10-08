@@ -30,22 +30,22 @@ class ScoreDB(QWidget):
         self.horizontalLayout.addWidget(self.pushBtAdd)
 
         self.pushBtDel = QtWidgets.QPushButton()
-        self.pushBtAdd.clicked.connect(self.deleteClicked)
+        self.pushBtDel.clicked.connect(self.deleteClicked)
         self.pushBtDel.setText("Del")
         self.horizontalLayout.addWidget(self.pushBtDel)
 
         self.pushBtFind = QtWidgets.QPushButton()
-        self.pushBtAdd.clicked.connect(self.find)
+        self.pushBtFind.clicked.connect(self.find)
         self.horizontalLayout.addWidget(self.pushBtFind)
         self.pushBtFind.setText("Find")
 
         self.pushBtInc = QtWidgets.QPushButton()
-        self.pushBtAdd.clicked.connect(self.incClicked)
+        self.pushBtInc.clicked.connect(self.incClicked)
         self.horizontalLayout.addWidget(self.pushBtInc)
         self.pushBtInc.setText("Inc")
 
         self.pushBtShow = QtWidgets.QPushButton()
-        self.pushBtAdd.clicked.connect(self.show)
+        self.pushBtShow.clicked.connect(self.show)
         self.horizontalLayout.addWidget(self.pushBtShow)
         self.pushBtShow.setText("Show")
 
@@ -83,8 +83,9 @@ class ScoreDB(QWidget):
 
         self.comboBoxKey = QtWidgets.QComboBox()
         self.comboBoxKey.setToolTip("")
-        self.comboBoxKey.setEditable(True)
+        self.comboBoxKey.setEditable(False)
         self.horizontalLayout_3.addWidget(self.comboBoxKey)
+        self.comboBoxKey.addItems(["Name","Age","Score"])
         self.comboBoxKey.setCurrentText("Name")
 
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
@@ -136,7 +137,7 @@ class ScoreDB(QWidget):
             record = {'Name': self.nameEdit.text(), 'Age': int(self.ageEdit.text()), 'Score': int(self.scoreEdit.text())}
             self.scoredb.append(record)
             self.showScoreDB()
-            print(self.scoredb)
+
         except :
             message_box = QMessageBox()
             message_box.setIcon(QMessageBox.Warning)
@@ -221,7 +222,6 @@ class ScoreDB(QWidget):
 
     def showScoreDB(self):
         self.textEdit.setText("")
-        #print(self.scoredb)
         for p in sorted(self.scoredb, key=lambda person: person[self.comboBoxKey.currentText()]):
             for attr in sorted(p):
                 self.textEdit.insertPlainText(attr + "=" + str(p[attr]) + "\t")
