@@ -35,7 +35,7 @@ class ScoreDB(QWidget):
         self.horizontalLayout.addWidget(self.pushBtDel)
 
         self.pushBtFind = QtWidgets.QPushButton()
-        self.pushBtFind.clicked.connect(self.find)
+        self.pushBtFind.clicked.connect(self.findClicked())
         self.horizontalLayout.addWidget(self.pushBtFind)
         self.pushBtFind.setText("Find")
 
