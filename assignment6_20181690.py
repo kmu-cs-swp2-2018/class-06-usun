@@ -202,7 +202,7 @@ class ScoreDB(QWidget):
         try:
             for p in self.scoredb:
                 if p['Name'] == self.nameEdit.text():
-                    p['Score'] = str(int(p['Score']) + int(self.amountEdit.text()))
+                    p['Score'] = int(p['Score'] + int(self.amountEdit.text()))
 
                 else:  # 에러처리 : 잘못된 이름을 입력했을 때
                     message_box = QMessageBox()
@@ -210,7 +210,6 @@ class ScoreDB(QWidget):
                     message_box.setWindowTitle("Warning!")
                     message_box.setText("데이터를 정확히 입력해주세요.")
                     message_box.setInformativeText("입력한 데이터를 확인하세요.")
-                break
             self.showScoreDB()
 
         except ValueError:
