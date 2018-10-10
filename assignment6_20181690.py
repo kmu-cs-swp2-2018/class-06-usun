@@ -22,6 +22,7 @@ class ScoreDB(QWidget):
 
     def initUI(self):
         self.centralwidget = QtWidgets.QWidget()
+
         self.horizontalLayout = QtWidgets.QHBoxLayout()
 
         self.pushBtAdd = QtWidgets.QPushButton()
@@ -97,8 +98,8 @@ class ScoreDB(QWidget):
         self.verticalLayout_4.addWidget(self.textEdit)
 
         self.verticalLayout_Vbox = QtWidgets.QVBoxLayout()
-        self.verticalLayout_Vbox.addLayout(self.horizontalLayout)
         self.verticalLayout_Vbox.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_Vbox.addLayout(self.horizontalLayout)
         self.verticalLayout_Vbox.addLayout(self.horizontalLayout_3)
         self.verticalLayout_Vbox.addLayout(self.verticalLayout_4)
 
