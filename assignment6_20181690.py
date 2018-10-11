@@ -173,11 +173,11 @@ class ScoreDB(QWidget):
 
     def findClicked(self):
         try:
-            FIND = []
+            find_list = []
             findShow = ""
             for p in self.scoredb:
                 if p['Name'] == self.nameEdit.text():
-                    FIND += [p]
+                    find_list += [p]
                 else:  # 에러처리 : 잘못된 이름을 입력했을 때
                     message_box = QMessageBox()
                     message_box.setIcon(QMessageBox.Warning)
@@ -185,7 +185,7 @@ class ScoreDB(QWidget):
                     message_box.setText("검색할 이름을 정확히 입력해주세요.")
                     message_box.setInformativeText("입력한 데이터를 확인하세요.")
 
-            for p in sorted(FIND, key=lambda person: person['Name']):
+            for p in sorted(find_list, key=lambda person: person['Name']):
                 for attr in sorted(p):
                     findShow += str(attr) + "=" + str(p[attr]) + '\t'
                 findShow += '\n'
