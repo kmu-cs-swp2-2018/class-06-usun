@@ -89,25 +89,21 @@ class Calculator(QWidget):
             self.display.clear()
 
         elif key in constantList:
-            constantResult = ['3.141590', '3E+8', '340', '1.5E+8']
+            constantValue = ['3.141590', '3E+8', '340', '1.5E+8']
 
-            for i in range(0,4):
+            for i in range(4):
                 if key in constantList[i]:
                     self.display.setText(self.display.text() + constantResult[i])
 
+        elif key in functionList:
+            n = self.display.text()
 
-        elif key == functionList[1]:
-            n = self.display.text()
-            value = calcFunctions.decToBin(n)
-            self.display.setText(str(value))
-        elif key == functionList[2]:
-            n = self.display.text()
-            value = calcFunctions.binToDec(n)
-            self.display.setText(str(value))
-        elif key == functionList[3]:
-            n = self.display.text()
-            value = calcFunctions.decToRoman(n)
-            self.display.setText(str(value))
+            functionValue = [calcFunctions.factorial(n), calcFunctions.decToBin(n), calcFunctions.binToDec(n), calcFunctions.decToRoman(n)]
+
+            for i in range(4):
+                if key in functionList[i]:
+                    self.display.setText(functionValue[i])
+
         else:
             self.display.setText(self.display.text() + key)
 
