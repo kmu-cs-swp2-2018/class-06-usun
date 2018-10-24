@@ -22,6 +22,7 @@ class Button(QToolButton):
         return size
 
 
+
 class Calculator(QWidget):
 
     def __init__(self, parent=None):
@@ -47,14 +48,16 @@ class Calculator(QWidget):
         }
 
         for label in buttonGroups.keys():
-            r = 0; c = 0
+            r = 0
+            c = 0
             buttonPad = buttonGroups[label]
             for btnText in buttonPad['buttons']:
                 button = Button(btnText, self.buttonClicked)
                 buttonPad['layout'].addWidget(button, r, c)
                 c += 1
                 if c >= buttonPad['columns']:
-                    c = 0; r += 1
+                    c = 0
+                    r += 1
 
         # Layout
         mainLayout = QGridLayout()
@@ -71,6 +74,7 @@ class Calculator(QWidget):
         self.setWindowTitle("My Calculator")
 
 
+
     def buttonClicked(self):
 
         if self.display.text() == 'Error!':
@@ -82,9 +86,13 @@ class Calculator(QWidget):
         if key == '=':
             try:
                 result = str(eval(self.display.text()))
-            except:
-                result = 'Error!'
+            except ZeroDivisionError:
+                result = '0으로 나눌 수 없습니다!'
+            except SyntaxError:
+                result = '입력되지 않은 값이 있습니다!'
             self.display.setText(result)
+
+
         elif key == 'C':
             self.display.clear()
 
@@ -93,7 +101,7 @@ class Calculator(QWidget):
 
             for i in range(4):
                 if key in constantList[i]:
-                    self.display.setText(self.display.text() + constantResult[i])
+                    self.display.setText(self.display.text() + constantValue[i])
 
         elif key in functionList:
             n = self.display.text()
