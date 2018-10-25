@@ -67,10 +67,13 @@ def romanToDec(numStr):
                 N += 50
             elif s[i:i + 2] == 'XL':
                 N += 40
-            elif s[i] == 'X':
-                N += 10
+            elif s[i] == 'X':           # 9 -> IX 인데, 이걸 다시 romanToDec하면 19(XIX)됨
+                N += 10                 # 19 -> XIX  romanToDec 29(XXIX)...왜지.......
+                continue
             elif s[i:i + 2] == 'IX':
                 N += 9
+                i += 1
+                continue
             elif s[i] == 'V':
                 N += 5
             elif s[i:i + 2] == 'IV':
