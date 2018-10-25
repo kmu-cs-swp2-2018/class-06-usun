@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QLayout, QGridLayout
 
 from keypad2 import numPadList, operatorList, constantList, functionList
 import calcFunctions
+from functions2 import functionMap
 
 class Button(QToolButton):
 
@@ -98,19 +99,14 @@ class Calculator(QWidget):
 
         elif key in constantList:
             constantValue = ['3.141590', '3E+8', '340', '1.5E+8']
-
-            for i in range(4):
+            for i in range(3):
                 if key in constantList[i]:
                     self.display.setText(self.display.text() + constantValue[i])
 
         elif key in functionList:
             n = self.display.text()
-
-            functionValue = [calcFunctions.factorial(n), calcFunctions.decToBin(n), calcFunctions.binToDec(n), calcFunctions.decToRoman(n)]
-
-            for i in range(4):
-                if key in functionList[i]:
-                    self.display.setText(functionValue[i])
+            value = functionMap[functionList.index(key)][1](n)
+            self.display.setText(str(value))
 
         else:
             self.display.setText(self.display.text() + key)
@@ -124,4 +120,5 @@ if __name__ == '__main__':
     calc = Calculator()
     calc.show()
     sys.exit(app.exec_())
+
 

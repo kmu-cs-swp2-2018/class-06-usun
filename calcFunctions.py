@@ -26,26 +26,34 @@ def binToDec(numStr):
 
 
 def decToRoman(numStr):
-    try:
+
         n = int(numStr)
         if n >= 4000:
             return 'Error!'
 
         result = ''
 
-        romans = {1000 : 'M', 900 : 'CM', 500 : 'D', 400 : 'CD',
-          100 : 'C',  90 : 'XC',  50 : 'L',  40 : 'XL',
-          10 : 'X',   9 : 'IX',   5 : 'V',   4 : 'IV',
-          1 : 'I' }
 
         for value in sorted(romans.keys(), reverse=True):
             while n >= value:
                 result += romans[value]
                 n -= value
-            return result
-
-    except:
-        return 'Error!'
+        return result
 
 
 
+def romanToDec(numStr):
+
+        n = int(numStr)
+        result = ""
+
+        return result
+
+
+
+
+
+romans = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',
+          100: 'C', 90: 'XC', 50: 'L', 40: 'XL',
+          10: 'X', 9: 'IX', 5: 'V', 4: 'IV',
+          1: 'I'}
