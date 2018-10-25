@@ -33,7 +33,7 @@ class Calculator(QWidget):
         self.display = QLineEdit()
         self.display.setReadOnly(True)
         self.display.setAlignment(Qt.AlignRight)
-        self.display.setMaxLength(15)
+        self.display.setMaxLength(20)           # 숫자 입력할 수 있는 길이. 에러메세지가 잘려서 20으로 변경
 
         # Button Creation and Placement
         numLayout = QGridLayout()

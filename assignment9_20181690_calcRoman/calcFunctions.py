@@ -4,42 +4,45 @@ def factorial(numStr):
     try:
         n = int(numStr)
         r = str(fact(n))
-    except:
-        r = 'Error!'
+    except ValueError:
+        r = "숫자를 입력해 주세요."
     return r
 
 def decToBin(numStr):
     try:
         n = int(numStr)
         r = bin(n)[2:]
-    except:
-        r = 'Error!'
+    except ValueError:
+        r = "숫자를 입력해 주세요."
     return r
 
 def binToDec(numStr):
     try:
         n = int(numStr, 2)
         r = str(n)
-    except:
-        r = 'Error!'
+    except ValueError:
+        r = "숫자를 입력해 주세요."
     return r
 
 
 def decToRoman(numStr):
-
+    try:
         n = int(numStr)
-        if n >= 4000:
-            return 'Error!'
-
         result = ''
 
+        if n >= 4000:
+            result = "4000미만의 수를 입력해 주세요."
+            return result
 
         for value in sorted(romans.keys(), reverse=True):
             while n >= value:
                 result += romans[value]
                 n -= value
-        return result
 
+    except ValueError:
+        result = "숫자를 입력해 주세요."
+
+    return result
 
 
 def romanToDec(numStr):
@@ -48,9 +51,6 @@ def romanToDec(numStr):
         result = ""
 
         return result
-
-
-
 
 
 romans = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',
