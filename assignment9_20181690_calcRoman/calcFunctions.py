@@ -46,9 +46,10 @@ def decToRoman(numStr):
 
 
 def romanToDec(numStr):
-
+    try:
         s = str(numStr)
         N = 0
+        result = ""
 
         for i in range(len(s)):
             if s[i] == 'M':
@@ -80,8 +81,15 @@ def romanToDec(numStr):
                 N += 4
             elif s[i] == 'I':
                 N += 1
+            else :        # 기호, 숫자를 입력했을 경우
+                N = "로마숫자만 변환 가능 합니다."
 
-        return N
+            result = N
+
+    except ValueError:    # 빈공간 입력해도 result값이 안나옴.. 왜지..ㅠㅜ
+        result = "로마숫자를 입력해 주세요."
+
+    return result
 
 
 romans = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',
