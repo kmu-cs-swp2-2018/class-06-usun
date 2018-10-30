@@ -140,20 +140,10 @@ class ScoreDB(QWidget):
             self.showScoreDB()
 
         except IndexError:
-            message_box = QMessageBox()
-            message_box.setIcon(QMessageBox.Warning)
-            message_box.setWindowTitle("Index Error!")
-            message_box.setText("입력되지 않은 값이 있습니다.")
-            message_box.setInformativeText("이름, 나이, 성적을 정확히 입력해주세요.")
-            message_box.exec()
+            self.errorMBox("Index Error!", "잘못입력된 값이 있습니다.", "이름, 나이, 성적을 정확히 입력해주세요.")
 
         except ValueError:
-            message_box = QMessageBox()
-            message_box.setIcon(QMessageBox.Warning)
-            message_box.setWindowTitle("Value Error!")
-            message_box.setText("잘못입력된 값이 있습니다.")
-            message_box.setInformativeText("나이, 성적을 정수로 입력해주세요.")
-            message_box.exec()
+            self.errorMBox("Value Error!","잘못입력된 값이 있습니다.","나이, 성적을 정수로 입력해주세요.")
 
     def deleteClicked(self):
         try:
@@ -164,20 +154,12 @@ class ScoreDB(QWidget):
                     isRemoved = True
 
                 if not isRemoved:  # 에러처리 : 잘못된 이름을 입력했을 때
-                    message_box = QMessageBox()
-                    message_box.setIcon(QMessageBox.Warning)
-                    message_box.setWindowTitle("Name Error!")
-                    message_box.setText("잘못된 이름이 입력되었습니다.")
-                    message_box.setInformativeText("이름을 정확히 입력해주세요.")
+                    self.errorMBox("Name Error!","잘못된 이름이 입력되었습니다.","이름을 정확히 입력해주세요.")
 
             self.showScoreDB()
 
         except IndexError:
-            message_box = QMessageBox()
-            message_box.setIcon(QMessageBox.Warning)
-            message_box.setWindowTitle("Index Error!")
-            message_box.setText("입력되지 않은 값이 있습니다.")
-            message_box.setInformativeText("삭제할 이름을 입력해주세요.")
+            self.errorMBox("Index Error!", "잘못입력된 값이 있습니다.","삭제할 이름을 입력해주세요.")
 
     def findClicked(self):
         try:
@@ -186,12 +168,9 @@ class ScoreDB(QWidget):
             for p in self.scoredb:
                 if p['Name'] == self.nameEdit.text():
                     find_list += [p]
+                    break
                 else:  # 에러처리 : 잘못된 이름을 입력했을 때
-                    message_box = QMessageBox()
-                    message_box.setIcon(QMessageBox.Warning)
-                    message_box.setWindowTitle("Name Error!")
-                    message_box.setText("잘못된 이름이 입력되었습니다.")
-                    message_box.setInformativeText("이름을 정확히 입력해 주세요.")
+                    self.errorMBox("Name Error!","잘못된 이름이 입력되었습니다.","이름을 정확히 입력해 주세요.")
 
             for p in sorted(find_list, key=lambda person: person['Name']):
                 for attr in sorted(p):
@@ -201,38 +180,24 @@ class ScoreDB(QWidget):
             self.textEdit.setPlainText(findShow)
 
         except IndexError:
-            message_box = QMessageBox()
-            message_box.setIcon(QMessageBox.Warning)
-            message_box.setWindowTitle("Index Error!")
-            message_box.setText("이름이 입력되지 않았습니다.")
-            message_box.setInformativeText("검색할 이름을 입력해주세요.")
+            self.errorMBox("Index Error!","잘못입력된 값이 있습니다.","검색할 이름을 정확히 입력해주세요.")
+
 
     def incClicked(self):
         try:
             for p in self.scoredb:
                 if p['Name'] == self.nameEdit.text():
                     p['Score'] = int(p['Score'] + int(self.amountEdit.text()))
-
+                    break
                 else:  # 에러처리 : 잘못된 이름을 입력했을 때
-                    message_box = QMessageBox()
-                    message_box.setIcon(QMessageBox.Warning)
-                    message_box.setWindowTitle("Name Error!")
-                    message_box.setText("잘못된 이름이 입력되었습니다.")
-                    message_box.setInformativeText("정확한 이름을 입력해 주세요.")
+                    self.errorMBox("Name Error!","잘못된 이름이 입력되었습니다.","정확한 이름을 입력해 주세요.")
             self.showScoreDB()
 
         except ValueError:
-            message_box = QMessageBox()
-            message_box.setIcon(QMessageBox.Warning)
-            message_box.setWindowTitle("Value Error!")
-            message_box.setText("입력된 점수가 정수가 아닙니다.")
-            message_box.setInformativeText("점수를 정확히 입력해주세요.")
+            self.errorMBox("Value Error!","입력된 점수가 정수가 아닙니다.","점수를 정확히 입력해주세요.")
+
         except IndexError:
-            message_box = QMessageBox()
-            message_box.setIcon(QMessageBox.Warning)
-            message_box.setWindowTitle("Index Error!")
-            message_box.setText("입력되지 않은 값이 있습니다.")
-            message_box.setInformativeText("이름, 점수를 정확히 입력해주세요.")
+            self.errorMBox("Index Error!","잘못입력된 값이 있습니다.","이름, 점수를 정확히 입력해주세요.")
 
     def showScoreDB(self):
         self.textEdit.setText("")
@@ -243,8 +208,13 @@ class ScoreDB(QWidget):
                     self.textEdit.insertPlainText('\n')
 
 
-
-
+    def errorMBox(self,title,text,informationtext):
+        message_box = QMessageBox()
+        message_box.setIcon(QMessageBox.Warning)
+        message_box.setWindowTitle(title)
+        message_box.setText(text)
+        message_box.setInformativeText(informationtext)
+        message_box.exec()
 
 
 if __name__ == '__main__':
