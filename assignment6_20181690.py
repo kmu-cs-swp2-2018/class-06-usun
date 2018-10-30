@@ -152,11 +152,10 @@ class ScoreDB(QWidget):
                 if p['Name'] == self.nameEdit.text():
                     self.scoredb.remove(p)
                     isRemoved = True
+                    self.showScoreDB()
 
-                if not isRemoved:  # 에러처리 : 잘못된 이름을 입력했을 때
-                    self.errorMBox("Name Error!","잘못된 이름이 입력되었습니다.","이름을 정확히 입력해주세요.")
-
-            self.showScoreDB()
+            if not isRemoved:  # 에러처리 : 잘못된 이름을 입력했을 때
+                self.errorMBox("Name Error!","잘못된 이름이 입력되었습니다.","이름을 정확히 입력해주세요.")
 
         except IndexError:
             self.errorMBox("Index Error!", "잘못입력된 값이 있습니다.","삭제할 이름을 입력해주세요.")
