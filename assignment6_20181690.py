@@ -162,19 +162,18 @@ class ScoreDB(QWidget):
 
     def findClicked(self):
         try:
-            find_list = []
             findShow = ""
-            for p in self.scoredb:
-                if p['Name'] == self.nameEdit.text():
-                    find_list += [p]
-                    break
-                else:  # 에러처리 : 잘못된 이름을 입력했을 때
-                    self.errorMBox("Name Error!","잘못된 이름이 입력되었습니다.","이름을 정확히 입력해 주세요.")
+            count = 0
 
-            for p in sorted(find_list, key=lambda person: person['Name']):
-                for attr in sorted(p):
-                    findShow += str(attr) + "=" + str(p[attr]) + '\t'
-                findShow += '\n'
+            for p in sorted(self.scoredb, key=lambda person: person['Name']):
+                    if self.nameEdit.text() == p['Name']:
+                        for attr in sorted(p):
+                            count = 1
+                            findShow += str(attr) + "=" + str(p[attr]) + '\t'
+            findShow += '\n'
+
+            if count == 0 :
+                self.errorMBox("Index Error!", "잘못입력된 값이 있습니다.", "검색할 이름을 정확히 입력해주세요.")
 
             self.textEdit.setPlainText(findShow)
 
