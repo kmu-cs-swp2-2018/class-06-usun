@@ -54,12 +54,10 @@ def romanToDec(numStr):
             while s != '':
                 if s[0] == romans[key]:
                     result += key
-                    turn = s[1:]
-                    s = turn
+                    s = s[1:]
                 elif s[0:2] == romans[key]:
                     result += key
-                    turn = s[2:]
-                    s = turn
+                    s = s[2:]
                 else :
                     break
 
