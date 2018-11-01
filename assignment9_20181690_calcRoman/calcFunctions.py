@@ -50,14 +50,14 @@ def romanToDec(numStr):
         s = str(numStr)
         result = 0
 
-        for value in sorted(romans.keys(), reverse=True):
+        for key in sorted(romans.keys(), reverse=True):
             while s != '':
-                if s[0] == romans[value]:
-                    result += value
+                if s[0] == romans[key]:
+                    result += key
                     turn = s[1:]
                     s = turn
-                elif s[0:2] == romans[value]:
-                    result += value
+                elif s[0:2] == romans[key]:
+                    result += key
                     turn = s[2:]
                     s = turn
                 else :
