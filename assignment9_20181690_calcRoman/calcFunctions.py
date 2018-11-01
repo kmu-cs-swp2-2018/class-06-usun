@@ -2,27 +2,24 @@ from math import factorial as fact
 
 def factorial(numStr):
     try:
-        n = int(numStr)
-        r = str(fact(n))
+        result =  str(fact(int(numStr)))
     except ValueError:
-        r = "숫자를 입력해 주세요."
-    return r
+        result = "숫자를 입력해 주세요."
+    return result
 
 def decToBin(numStr):
     try:
-        n = int(numStr)
-        r = bin(n)[2:]
+        result = bin(int(numStr))[2:]
     except ValueError:
-        r = "숫자를 입력해 주세요."
-    return r
+        result = "숫자를 입력해 주세요."
+    return result
 
 def binToDec(numStr):
     try:
-        n = int(numStr, 2)
-        r = str(n)
+        result = str(int(numStr, 2))
     except ValueError:
-        r = "숫자를 입력해 주세요."
-    return r
+        result = "숫자를 입력해 주세요."
+    return result
 
 
 def decToRoman(numStr):
