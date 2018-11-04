@@ -29,7 +29,6 @@ def decToRoman(numStr):
 
         if n >= 4000:
             result = "4000미만의 수를 입력해 주세요."
-            return result
 
         for value in sorted(romans.keys(), reverse=True):
             while n >= value:
