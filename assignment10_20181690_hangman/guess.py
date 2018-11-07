@@ -1,3 +1,5 @@
+from hangman import Hangman
+
 class Guess:
 
     def __init__(self,word):
@@ -8,7 +10,8 @@ class Guess:
         self.secretWord = word
         self.guessedChars = []
         self.numTries = 0  # 실패횟수
-        self.currentStatus = '_' * len(word)        # secretWord 글자 수 볼 수 있게 _  추가
+        self.remaingTries = (len(Hangman.draw) - 1) - self.numTries       # 남은 횟수를 볼 수 있게
+        self.currentStatus = '*' * len(word)        # secretWord 글자 수 볼 수 있게 *  추가
 
     def display(self):
         # 알아낸 문자들과 그 위치 가리키는 데이터를 화면에 출력
@@ -17,7 +20,7 @@ class Guess:
         print("Current : ", self.currentStatus)
         self.guessedChars.sort()        # 이미 시도한 글자 들을 순서대로 볼 수 있게 정렬
         print("Already tried : ", self.guessedChars)
-        print("Tries : ", self.numTries)
+        print("Tries : ", self.numTries, '\t\t\t\tRemaining Tries : ', self.remaingTries)
 
     def guess(self,character):
         # 입력한 문자를 리스트에 추가
