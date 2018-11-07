@@ -25,6 +25,11 @@ def gameMain():
             print('You already guessed \"' + guessedChar + '\"')
             continue
 
+        # 한글, 영어 대문자, 기호, 숫자를 입력했을 경우 / 아스키코드로 판별
+        if chr(97) > chr(ord(guessedChar)) or chr(122) < chr(ord(guessedChar)): # 아스키코드 99~122 가 영어 소문자
+            print('Please input in English lower case')
+            continue
+
         finished = guess.guess(guessedChar)
         if finished == True:
             break
