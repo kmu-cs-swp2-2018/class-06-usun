@@ -5,16 +5,35 @@ class Guess:
         # 이미 추측했던 문자들을 저장할 리스트 초기화
         # 추측 실패 횟수 기록을 위한 변수 초기화
         # 알아낸 글자들과 그 위치 가리키는 데이터를 초기화
-        pass
+        self.secretWord = word
+        self.guessedChars = []
+        self.numTries = 0  # 실패횟수
+        self.currentStatus = ''
 
     def display(self):
         # 알아낸 문자들과 그 위치 가리키는 데이터를 화면에 출력
+        # 이미 시도한 문자들을 출력
         # 추측 실패 횟수를 화면에 출력
-        pass
+        print("Current : ", self.currentStatus)
+        print("Already tried : ", self.guessedChars)
+        print("Tries : ", self.numTries)
 
     def guess(self,character):
         # 입력한 문자를 리스트에 추가
         # 비밀단어에 입력한 문자가 없으면 실패 횟수 증가
         # 알아낸 문자와 그 위치를 가리키는 데이터 갱신
         # 단어를 맞췄는지 리턴
-        pass
+        self.guessedChars.append(character)
+        if character not in self.secretWord:
+            self.numTries +=1
+        else:
+            for i in range (len(self.secretWord)):
+                if  character == self.secretWord[i]:
+                    self.currentStatus = self.currentStatus[:i]+ i + self.currentStatus[i+1:]
+
+            if self.currentStatus == self.secretWord:
+                result = True
+            else:
+                result = False
+
+            return result
