@@ -8,13 +8,14 @@ class Guess:
         self.secretWord = word
         self.guessedChars = []
         self.numTries = 0  # 실패횟수
-        self.currentStatus = ''
+        self.currentStatus = '_' * len(word)        # secretWord 글자 수 볼 수 있게 _  추가
 
     def display(self):
         # 알아낸 문자들과 그 위치 가리키는 데이터를 화면에 출력
         # 이미 시도한 문자들을 출력
         # 추측 실패 횟수를 화면에 출력
         print("Current : ", self.currentStatus)
+        self.guessedChars.sort()        # 이미 시도한 글자 들을 순서대로 볼 수 있게 정렬
         print("Already tried : ", self.guessedChars)
         print("Tries : ", self.numTries)
 
@@ -29,7 +30,7 @@ class Guess:
         else:
             for i in range (len(self.secretWord)):
                 if  character == self.secretWord[i]:
-                    self.currentStatus = self.currentStatus[:i]+ i + self.currentStatus[i+1:]
+                    self.currentStatus = self.currentStatus[:i]+ character + self.currentStatus[i+1:]
 
             if self.currentStatus == self.secretWord:
                 result = True

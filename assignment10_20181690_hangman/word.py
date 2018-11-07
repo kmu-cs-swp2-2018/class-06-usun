@@ -5,7 +5,7 @@ class Word:
         # 파일을 읽어서 단어 데이터베이스 초기화한 다음, 파일 닫음
         self.words = []
         file = open(filename, 'r')
-        lines = file.readline()     # 행별로 구분
+        lines = file.readlines()     # 행별로 구분
         file.close()
 
         for line in lines:
