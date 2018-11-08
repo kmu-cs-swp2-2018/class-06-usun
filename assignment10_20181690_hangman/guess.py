@@ -10,7 +10,7 @@ class Guess:
         self.secretWord = word
         self.guessedChars = []
         self.numTries = 0  # 실패횟수
-        self.remaingTries = (len(Hangman.draw) - 1) - self.numTries       # 남은 횟수를 볼 수 있게
+        self.remainingTries = 0       # 남은 횟수를 볼 수 있게
         self.currentStatus = '*' * len(word)        # secretWord 글자 수 볼 수 있게 *  추가
 
     def display(self):
@@ -20,7 +20,8 @@ class Guess:
         print("Current : ", self.currentStatus)
         self.guessedChars.sort()        # 이미 시도한 글자 들을 순서대로 볼 수 있게 정렬
         print("Already tried : ", self.guessedChars)
-        print("Tries : ", self.numTries, '\t\t\t\tRemaining Tries : ', self.remaingTries)
+        self.remainingTries = (len(Hangman.draw) - 1) - self.numTries
+        print("Tries : ", self.numTries, '\t\t\t\tRemaining Tries : ', self.remainingTries)
 
     def guess(self,character):
         # 입력한 문자를 리스트에 추가
