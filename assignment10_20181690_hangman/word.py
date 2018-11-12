@@ -13,7 +13,7 @@ class Word:
             self.words.append(word)
 
     def randFromDB(self):
-        # word.txt에서 임의의 단어를 선택
+        # word.txt에서 임의의 단어를 선택 
         return self.words[random.randrange(len(self.words))]
 
 
