@@ -11,7 +11,7 @@ class Guess:
         self.guessedChars = []
         self.numTries = 0  # 실패횟수
         self.remainingTries = 0       # 남은 횟수를 볼 수 있게
-        self.currentStatus = '*' * len(word)        # secretWord 글자 수 볼 수 있게 *  추가
+        self.currentStatus = '*' * len(word)        # secretWord 글자 수 볼 수 있게 * 추가
 
     def display(self):
         # 알아낸 문자들과 그 위치 가리키는 데이터를 화면에 출력
@@ -33,7 +33,7 @@ class Guess:
             self.numTries +=1
         else:
             for i in range (len(self.secretWord)):
-                if  character == self.secretWord[i]:
+                if character == self.secretWord[i]:
                     self.currentStatus = self.currentStatus[:i]+ character + self.currentStatus[i+1:]
 
             if self.currentStatus == self.secretWord:
