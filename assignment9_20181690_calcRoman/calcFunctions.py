@@ -47,15 +47,14 @@ def romanToDec(numStr):
         result = 0
 
         for key in sorted(romans.keys(), reverse=True):
-            while s != '':
+            while len(s) > 0:
                 if s[0:len(romans[key])] == romans[key]:
                     result += key
                     s = s[len(romans[key]):]
                 else:
                     break
-
-    except ValueError:
-        result = "로마숫자를 입력해 주세요."
+    except:
+        result = "Error!"
 
     return result
 
