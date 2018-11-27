@@ -37,6 +37,8 @@ class HangmanGame(QWidget):
         self.currentWord = QLineEdit()
         self.currentWord.setReadOnly(True)
         self.currentWord.setAlignment(Qt.AlignCenter)
+
+        self.currentWord.setFixedWidth(400)
         font = self.currentWord.font()
         font.setPointSize(font.pointSize() + 8)
         self.currentWord.setFont(font)
@@ -89,7 +91,7 @@ class HangmanGame(QWidget):
 
     def startGame(self):
         self.hangman = Hangman()
-        self.guess = Guess(self.word.randFromDB())
+        self.guess = Guess(self.word.randFromDB(4))
         self.gameOver = False
 
         self.hangmanWindow.setPlaceholderText(self.hangman.currentShape())
@@ -106,7 +108,7 @@ class HangmanGame(QWidget):
             self.message.setText("Start Hangman game")
 
         # 입력의 길이가 1 인지를 판단하고, 아닌 경우 메시지 출력, 리턴
-        if len(self.charInput.text()) != 1:
+        if not len(guessedChar) == 1:
             self.message.setText('One character at a time!')
         
         # 이미 사용한 글자인지를 판단하고, 아닌 경우 메시지 출력, 리턴
