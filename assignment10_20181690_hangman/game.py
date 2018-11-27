@@ -6,8 +6,6 @@ from word import Word
 def gameMain():
     word = Word('words.txt')
     guess = Guess(word.randFromDB())        # 랜덤하게 단어 선택
-
-    finished = True
     hangman = Hangman()
     maxTries = hangman.getLife()        # 최대 시도 횟수
 
@@ -27,15 +25,14 @@ def gameMain():
             continue
 
         # 한글, 영어 대문자, 기호, 숫자를 입력했을 경우 : 아스키코드로 판별
-        if chr(97) > chr(ord(guessedChar)) or chr(122) < chr(ord(guessedChar)): # 아스키코드 99~122 가 영어 소문자
+        if guessedChar != (guessedChar.lower() or guessedChar.isalpha()):
             print('Please input in English lower case')
             continue
 
-# 플래그 변수 없엘려고 노력해야 됨
-        if finished == guess.guess(guessedChar):
+        if guess.guess(guessedChar):
             break
 
-    if finished == guess.guess(guessedChar):
+    if (maxTries - guess.numTries) > 0:
         print('Success')
     else:
         print(hangman.get(0))

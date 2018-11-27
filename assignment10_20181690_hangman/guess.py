@@ -1,5 +1,4 @@
 from hangman import Hangman
-
 class Guess:
 
     def __init__(self,word):
@@ -13,15 +12,17 @@ class Guess:
         self.remainingTries = 0     # 남은 횟수
         self.currentStatus = '*' * len(word)
 
+
     def display(self):
         # 알아낸 문자들과 그 위치 가리키는 데이터 출력
         # 이미 시도한 문자들을 출력
         # 추측 실패 횟수, 남은 횟수 출력
+        hangman = Hangman()
         print(self.secretWord)
         print("Current : ", self.currentStatus)
         self.guessedChars.sort()
         print("Already tried : ", self.guessedChars)
-        self.remainingTries = (len(Hangman.draw) - 1) - self.numTries
+        self.remainingTries = hangman.getLife() - self.numTries
         print("Tries : ", self.numTries, '\t\t\t\tRemaining Tries : ', self.remainingTries)
 
     def guess(self,character):
@@ -37,8 +38,7 @@ class Guess:
                 if character == self.secretWord[i]:
                     self.currentStatus = self.currentStatus[:i] + character + self.currentStatus[i+1:]
 
-            if self.currentStatus == self.secretWord:
-                return True
+            return self.currentStatus == self.secretWord
 
         else:
             self.numTries +=1

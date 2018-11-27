@@ -101,4 +101,5 @@ class Hangman:
 
     def get(self, life):
         # 문제 틀렸을 때마다 달라지는 그림 리턴
-        return self.draw[life] 
+        return self.draw[life]
+
