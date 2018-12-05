@@ -46,9 +46,9 @@ class WordGame:
 
         self.hLayout_BtCancle = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.hLayout_BtCancle.setContentsMargins(0, 0, 0, 0)
-        self.cancleButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
-        self.hLayout_BtCancle.addWidget(self.cancleButton)
-        self.cancleButton.setText("Cancle")
+        self.cancelButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.hLayout_BtCancle.addWidget(self.cancelButton)
+        self.cancelButton.setText("Cancel")
 
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.centralwidget)
         self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(110, 400, 61, 61))
