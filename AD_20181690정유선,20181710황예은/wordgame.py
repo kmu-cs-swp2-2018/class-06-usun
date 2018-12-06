@@ -1,9 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from word import Word
 import sys
+
+
 
 class WordGame:
 
-    def initUi(self, MainWindow):
+
+    def __init__(self, MainWindow):
         MainWindow.resize(672, 559)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         MainWindow.setWindowTitle("Word Game")
@@ -66,8 +70,7 @@ class WordGame:
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = WordGame()
-    ui.initUi(MainWindow)
+    ADgame = WordGame(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
 
