@@ -13,7 +13,15 @@ class Word:
             self.words.append(word)
 
     def randFromDB(self):
-        # word.txt에서 임의의 단어를 선택 
-        return self.words[random.randrange(len(self.words))]
+        # word.txt에서 임의의 개수만큼 임의의 단어들을 선택
+        randWords = []
+        randInt = random.randrange(5,11)
+        for i in range(randInt):
+            randWords.append(self.words[random.randrange(len(self.words))])
+        return randWords
 
-
+if __name__ == '__main__':
+    word = Word("words.txt")
+    print(word.randFromDB())
+    print(word.randFromDB())
+    print(word.randFromDB())
